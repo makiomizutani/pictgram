@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   
   def index
     @topics = Topic.all.includes(:favorite_users)
+
   end
 
   def new
@@ -11,7 +12,6 @@ class TopicsController < ApplicationController
 
   def create
     @topic = current_user.topics.new(topic_params)
-
     if @topic.save
       redirect_to topics_path, success: '投稿に成功しました'
     else
